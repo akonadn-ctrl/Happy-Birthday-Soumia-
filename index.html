@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إلى سمية ❤️</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#05020b;
+    font-family:Arial,"Tahoma",sans-serif;
+}
+
+body{
+    perspective:1200px;
+    color:white;
+}
+
+/* =========================
+   الخلفية
+========================= */
+
+.scene{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 50% 40%,#32114c 0%,#13051f 35%,#05020b 75%);
+}
+
+/* نجوم الخلفية */
+
+.stars{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+}
+
+.star{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:white;
+    box-shadow:0 0 10px #fff,0 0 20px #ff8ad8;
+    animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{
+        opacity:.25;
+        transform:scale(.6);
+    }
+    to{
+        opacity:1;
+        transform:scale(1.5);
+    }
+}
+
+/* =========================
+   الزهور الطائرة
+========================= */
+
+.flower{
+    position:absolute;
+    font-size:25px;
+    filter:drop-shadow(0 0 8px #ff5ba8);
+    pointer-events:none;
+    z-index:4;
+    transition:
+        left 2.4s cubic-bezier(.2,.8,.2,1),
+        top 2.4s cubic-bezier(.2,.8,.2,1),
+        transform 2.4s cubic-bezier(.2,.8,.2,1),
+        opacity 1s;
+}
+
+/* =========================
+   شموع عيد الميلاد
+========================= */
+
+.cake{
+    position:absolute;
+    bottom:7vh;
+    left:50%;
+    transform:translateX(-50%);
+    width:210px;
+    height:100px;
+    z-index:5;
+    transition:opacity 1s,transform 1s;
+}
+
+.cake-base{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:210px;
+    height:65px;
+    border-radius:15px 15px 25px 25px;
+    background:linear-gradient(
+        145deg,
+        #ff9acb,
+        #e53f91 45%,
+        #79164c
+    );
+    box-shadow:
+        inset 0 8px 10px rgba(255,255,255,.3),
+        0 15px 30px rgba(255,0,140,.25);
+    transform:rotateX(10deg);
+}
+
+.cream{
+    position:absolute;
+    top:-15px;
+    left:0;
+    width:210px;
+    height:35px;
+    border-radius:50%;
+    background:linear-gradient(#fff,#ffb8dc);
+    box-shadow:0 5px 15px rgba(255,160,220,.5);
+}
+
+.candle{
+    position:absolute;
+    bottom:57px;
+    width:18px;
+    height:55px;
+    border-radius:5px;
+    background:repeating-linear-gradient(
+        45deg,
+        #fff 0 7px,
+        #ff4e9b 7px 14px
+    );
+    box-shadow:inset -4px 0 7px rgba(0,0,0,.25);
+}
+
+.candle:nth-child(1){left:45px}
+.candle:nth-child(2){left:96px}
+.candle:nth-child(3){left:147px}
+
+.flame{
+    position:absolute;
+    width:17px;
+    height:27px;
+    border-radius:50% 50% 50% 0;
+    background:linear-gradient(#fff,#ffe000,#ff6a00);
+    transform:rotate(-45deg);
+    top:-31px;
+    left:1px;
+    box-shadow:
+        0 0 10px #fff,
+        0 0 25px #ffb000,
+        0 0 45px #ff6800;
+    animation:flame .35s infinite alternate;
+}
+
+@keyframes flame{
+    to{
+        transform:rotate(-40deg) scale(1.1);
+    }
+}
+
+/* =========================
+   شاشة البداية
+========================= */
+
+.intro{
+    position:absolute;
+    inset:0;
+    z-index:10;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    transition:opacity 1.2s,transform 1.2s;
+}
+
+.intro h1{
+    font-size:clamp(25px,7vw,48px);
+    margin:0 0 30px;
+    text-shadow:
+        0 0 10px #ff4fae,
+        0 0 30px #ff1d8d;
+    animation:titleGlow 2s infinite alternate;
+}
+
+@keyframes titleGlow{
+    from{filter:brightness(.8)}
+    to{filter:brightness(1.5)}
+}
+
+/* إطار الزهور */
+
+.button-frame{
+    position:relative;
+    padding:55px 70px;
+    border-radius:50px;
+    transform-style:preserve-3d;
+    background:
+        radial-gradient(circle,
+        rgba(255,70,160,.16),
+        rgba(255,0,100,.04) 60%,
+        transparent);
+    box-shadow:
+        0 0 25px #ff278f,
+        inset 0 0 30px rgba(255,70,180,.15);
+}
+
+.flower-border{
+    position:absolute;
+    inset:-30px;
+    pointer-events:none;
+}
+
+.border-flower{
+    position:absolute;
+    font-size:30px;
+    filter:drop-shadow(0 0 8px #ff4fae);
+    animation:floatFlower 2s infinite ease-in-out alternate;
+}
+
+@keyframes floatFlower{
+    to{
+        transform:translateY(-8px) rotate(10deg) scale(1.1);
+    }
+}
+
+.start{
+    position:relative;
+    border:2px solid rgba(255,255,255,.7);
+    padding:20px 38px;
+    border-radius:60px;
+    background:
+        linear-gradient(
+            145deg,
+            #ff3d9d,
+            #a9146a
+        );
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:
+        0 10px 25px rgba(255,0,130,.4),
+        inset 0 2px 5px rgba(255,255,255,.5);
+    transform:translateZ(50px);
+    transition:.3s;
+}
+
+.start:hover{
+    transform:translateZ(70px) scale(1.08);
+}
+
+/* =========================
+   القلب
+========================= */
+
+.heart-stage{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    pointer-events:none;
+    z-index:7;
+}
+
+.heart{
+    position:relative;
+    width:420px;
+    height:420px;
+    transform-style:preserve-3d;
+}
+
+.heart-flower{
+    position:absolute;
+    left:0;
+    top:0;
+    font-size:22px;
+    opacity:0;
+    transform-style:preserve-3d;
+    transition:
+        left 2.8s cubic-bezier(.12,.8,.2,1),
+        top 2.8s cubic-bezier(.12,.8,.2,1),
+        opacity .5s,
+        transform 2.8s cubic-bezier(.12,.8,.2,1);
+    filter:drop-shadow(0 0 8px #ff4da8);
+}
+
+.heart-name{
+    position:absolute;
+    left:50%;
+    top:48%;
+    transform:
+        translate(-50%,-50%)
+        translateZ(80px)
+        scale(.2);
+    opacity:0;
+    font-size:clamp(35px,10vw,65px);
+    font-weight:bold;
+    color:#fff;
+    text-shadow:
+        0 0 10px #ff5bb5,
+        0 0 30px #ff1b8d,
+        0 0 60px #fff;
+    transition:1.5s;
+}
+
+/* الرسالة تحت القلب */
+
+.message{
+    position:absolute;
+    top:calc(50% + 220px);
+    left:50%;
+    transform:
+        translateX(-50%)
+        translateZ(80px)
+        translateY(30px);
+    width:90%;
+    max-width:650px;
+    text-align:center;
+    opacity:0;
+    transition:1.5s;
+    font-size:clamp(16px,4vw,24px);
+    line-height:1.8;
+    color:#ffe5f4;
+    text-shadow:0 0 15px #ff399d;
+}
+
+/* =========================
+   I LOVE YOU ثلاثي الأبعاد
+========================= */
+
+.love3d{
+    position:absolute;
+    inset:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 4vw;
+    opacity:0;
+    pointer-events:none;
+    z-index:8;
+    transform-style:preserve-3d;
+}
+
+.love-side{
+    font-size:clamp(18px,5vw,40px);
+    font-weight:bold;
+    color:#ff9ed8;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    text-shadow:
+        2px 2px 0 #8b1458,
+        5px 5px 15px #ff1b91,
+        0 0 30px #ff73c0;
+    animation:love3d 3s infinite ease-in-out;
+    transform-style:preserve-3d;
+}
+
+.love-side.left{
+    transform:rotateY(25deg) rotateZ(5deg);
+}
+
+.love-side.right{
+    transform:rotateY(-25deg) rotateZ(-5deg);
+}
+
+@keyframes love3d{
+    0%,100%{
+        transform:
+            translateZ(0)
+            rotateY(20deg)
+            rotateX(0deg);
+    }
+    50%{
+        transform:
+            translateZ(100px)
+            rotateY(-20deg)
+            rotateX(15deg);
+    }
+}
+
+/* =========================
+   النهاية
+========================= */
+
+.final{
+    position:absolute;
+    inset:0;
+    z-index:9;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    opacity:0;
+    pointer-events:none;
+    transform-style:preserve-3d;
+}
+
+.final h2{
+    font-size:clamp(30px,9vw,70px);
+    margin:0;
+    color:#fff;
+    text-shadow:
+        0 0 10px #ff50ae,
+        0 0 30px #ff168d,
+        0 0 70px #ff168d;
+    transform:translateZ(100px);
+}
+
+.final .date{
+    margin-top:18px;
+    font-size:clamp(20px,5vw,34px);
+    color:#ffd5ed;
+    text-shadow:0 0 20px #ff4cae;
+    transform:translateZ(70px);
+}
+
+.final .small{
+    margin-top:25px;
+    max-width:700px;
+    width:90%;
+    line-height:1.8;
+    font-size:clamp(15px,4vw,22px);
+    color:#fff0f8;
+    transform:translateZ(50px);
+}
+
+/* إخفاء البداية */
+
+.hide{
+    opacity:0;
+    transform:scale(1.3);
+    pointer-events:none;
+}
+
+.show{
+    opacity:1;
+}
+
+/* الهاتف */
+
+@media(max-width:600px){
+
+    .button-frame{
+        padding:45px 45px;
+    }
+
+    .cake{
+        transform:translateX(-50%) scale(.75);
+    }
+
+    .heart{
+        transform:scale(.72);
+    }
+
+    .message{
+        top:calc(50% + 165px);
+    }
+
+    .love3d{
+        padding:0 15px;
+    }
+
+    .love-side{
+        font-size:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+
+    <div class="stars" id="stars"></div>
+
+    <!-- شاشة البداية -->
+    <section class="intro" id="intro">
+
+        <h1>مفاجأة صغيرة لكِ يا سمية ❤️</h1>
+
+        <div class="button-frame">
+
+            <div class="flower-border">
+
+                <span class="border-flower" style="left:0;top:0">🌹</span>
+                <span class="border-flower" style="left:20%;top:-25px">🌸</span>
+                <span class="border-flower" style="left:45%;top:-35px">🌷</span>
+                <span class="border-flower" style="right:15%;top:-20px">🌹</span>
+                <span class="border-flower" style="right:-10px;top:20%">🌺</span>
+                <span class="border-flower" style="right:-20px;bottom:20%">🌷</span>
+                <span class="border-flower" style="right:20%;bottom:-25px">🌹</span>
+                <span class="border-flower" style="left:40%;bottom:-30px">🌸</span>
+                <span class="border-flower" style="left:10%;bottom:-15px">🌺</span>
+                <span class="border-flower" style="left:-20px;bottom:20%">🌷</span>
+                <span class="border-flower" style="left:-25px;top:20%">🌹</span>
+
+            </div>
+
+            <button class="start" id="start">
+                اضغطي هنا ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- الشموع -->
+    <div class="cake" id="cake">
+
+        <div class="cake-base"></div>
+        <div class="cream"></div>
+
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+
+    </div>
+
+    <!-- القلب -->
+    <section class="heart-stage" id="heartStage">
+
+        <div class="heart" id="heart">
+
+            <div class="heart-name" id="heartName">
+                سمية ❤️
+            </div>
+
+        </div>
+
+        <div class="message" id="message">
+            أنا آسف لعدم تقديم هدية مادية بسبب البعد بيننا،
+            لذلك صنعت لكِ هذه المفاجأة الصغيرة من قلبي ❤️
+        </div>
+
+    </section>
+
+    <!-- I LOVE YOU -->
+    <section class="love3d" id="love3d">
+
+        <div class="love-side left">
+            I LOVE YOU ❤️
+        </div>
+
+        <div class="love-side right">
+            I LOVE YOU ❤️
+        </div>
+
+    </section>
+
+    <!-- النهاية -->
+    <section class="final" id="final">
+
+        <h2>
+            عيد ميلاد سعيد يا سمية ❤️
+        </h2>
+
+        <div class="date">
+            15 أكتوبر 2010 🎂
+        </div>
+
+        <div class="small">
+            أتمنى أن تكون هذه المفاجأة الصغيرة قد رسمت ابتسامة
+            على وجهكِ، وأن تكون أيامكِ القادمة مليئة بالفرح
+            والزهور واللحظات الجميلة 🌹✨
+        </div>
+
+    </section>
+
+</div>
+
+<script>
+
+/* =========================
+   النجوم
+========================= */
+
+const stars = document.getElementById("stars");
+
+for(let i=0;i<90;i++){
+
+    const s=document.createElement("div");
+
+    s.className="star";
+
+    s.style.left=Math.random()*100+"%";
+    s.style.top=Math.random()*100+"%";
+
+    s.style.animationDelay=(Math.random()*3)+"s";
+
+    stars.appendChild(s);
+}
+
+
+/* =========================
+   إنشاء الزهور
+========================= */
+
+const heart=document.getElementById("heart");
+
+const flowers=[
+    "🌹","🌸","🌺","🌷","🌻","💐","❤️","💗","✨"
+];
+
+const particles=[];
+
+const total=150;
+
+/*
+   معادلة القلب:
+   x = 16 sin³(t)
+   y = 13 cos(t)-5cos(2t)-2cos(3t)-cos(4t)
+*/
+
+function heartPosition(t){
+
+    const x=
+        16*Math.pow(Math.sin(t),3);
+
+    const y=
+        13*Math.cos(t)
+        -5*Math.cos(2*t)
+        -2*Math.cos(3*t)
+        -Math.cos(4*t);
+
+    return {
+        x:x*10.5,
+        y:-y*10.5
+    };
+}
+
+for(let i=0;i<total;i++){
+
+    const f=document.createElement("span");
+
+    f.className="heart-flower";
+
+    f.textContent=
+        flowers[Math.floor(Math.random()*flowers.length)];
+
+    /* نقطة البداية عشوائية حول الشاشة */
+
+    f.style.left=
+        (Math.random()*window.innerWidth-
+        window.innerWidth/2+210)+"px";
+
+    f.style.top=
+        (Math.random()*window.innerHeight-
+        window.innerHeight/2+210)+"px";
+
+    f.style.transform=
+        `translateZ(${Math.random()*500-250}px)
+         rotate(${Math.random()*360}deg)
+         scale(${.5+Math.random()*.8})`;
+
+    heart.appendChild(f);
+
+    const t=
+        (Math.PI*2*i)/total;
+
+    const p=heartPosition(t);
+
+    particles.push({
+        el:f,
+        x:p.x,
+        y:p.y
+    });
+}
+
+
+/* =========================
+   الزهور العشوائية المحيطة
+========================= */
+
+const scene=document.querySelector(".scene");
+
+for(let i=0;i<35;i++){
+
+    const f=document.createElement("span");
+
+    f.className="flower";
+
+    f.textContent=
+        flowers[Math.floor(Math.random()*flowers.length)];
+
+    f.style.left=Math.random()*100+"vw";
+    f.style.top=Math.random()*100+"vh";
+
+    f.style.opacity=.35+Math.random()*.6;
+
+    f.style.transform=
+        `translateZ(${Math.random()*400-200}px)
+         rotate(${Math.random()*360}deg)`;
+
+    scene.appendChild(f);
+}
+
+
+/* =========================
+   بدء المفاجأة
+========================= */
+
+const start=document.getElementById("start");
+const intro=document.getElementById("intro");
+const cake=document.getElementById("cake");
+const heartStage=document.getElementById("heartStage");
+const heartName=document.getElementById("heartName");
+const message=document.getElementById("message");
+const love3d=document.getElementById("love3d");
+const final=document.getElementById("final");
+
+start.addEventListener("click",()=>{
+
+    /* إخفاء البداية */
+
+    intro.classList.add("hide");
+
+    setTimeout(()=>{
+
+        cake.style.opacity="0";
+        cake.style.transform=
+            "translateX(-50%) translateY(80px) scale(.7)";
+
+        heartStage.style.opacity="1";
+
+        /* إعطاء الزهور لحظة قبل الانطلاق */
+
+        setTimeout(()=>{
+
+            particles.forEach((p,i)=>{
+
+                setTimeout(()=>{
+
+                    p.el.style.left=
+                        (210+p.x)+"px";
+
+                    p.el.style.top=
+                        (210+p.y)+"px";
+
+                    p.el.style.opacity="1";
+
+                    p.el.style.transform=
+                        `translateZ(${Math.random()*180}px)
+                         rotate(${Math.random()*360}deg)
+                         scale(${.65+Math.random()*.65})`;
+
+                },i*14);
+
+            });
+
+        },400);
+
+    },1000);
+
+
+    /* ظهور الاسم بعد اكتمال القلب */
+
+    setTimeout(()=>{
+
+        heartName.style.opacity="1";
+
+        heartName.style.transform=
+            "translate(-50%,-50%) translateZ(100px) scale(1)";
+
+    },3900);
+
+
+    /* الرسالة تحت القلب */
+
+    setTimeout(()=>{
+
+        message.style.opacity="1";
+        message.style.transform=
+            "translateX(-50%) translateZ(100px) translateY(0)";
+
+    },5000);
+
+
+    /* تفكك القلب */
+
+    setTimeout(()=>{
+
+        particles.forEach((p,i)=>{
+
+            setTimeout(()=>{
+
+                p.el.style.left=
+                    (Math.random()*window.innerWidth-
+                    window.innerWidth/2+210)+"px";
+
+                p.el.style.top=
+                    (Math.random()*window.innerHeight-
+                    window.innerHeight/2+210)+"px";
+
+                p.el.style.opacity="0";
+
+                p.el.style.transform=
+                    `translateZ(${Math.random()*900}px)
+                     rotate(${Math.random()*900}deg)
+                     scale(0)`;
+
+            },i*7);
+
+        });
+
+        heartName.style.opacity="0";
+        message.style.opacity="0";
+
+    },7600);
+
+
+    /* I LOVE YOU */
+
+    setTimeout(()=>{
+
+        love3d.style.opacity="1";
+
+    },8800);
+
+
+    /* النهاية */
+
+    setTimeout(()=>{
+
+        love3d.style.opacity="0";
+
+        setTimeout(()=>{
+
+            final.style.opacity="1";
+
+        },800);
+
+    },11600);
+
+});
+
+</script>
+
+</body>
+  </html>
